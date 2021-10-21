@@ -142,7 +142,7 @@ RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckod
         && mv geckodriver /usr/local/bin \
         && chmod a+x /usr/local/bin/geckodriver
 
-RUN rm /bin/sh && ls -s l/bin/bash /bin/sh && ls -la /bin/sh
+RUN rm /bin/sh && ls -s /bin/bash /bin/sh && ls -la /bin/sh
 
 RUN grep -q ${GROUPS[0]} /etc/group || groupadd -g ${GROUPS[0]} ${USER}
 RUN grep -q ${UID} /etc/passwd || useradd -d ${HOME} -m -u ${UID} -g ${GROUPS[0]} \
