@@ -144,7 +144,7 @@ RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckod
 
 RUN readlink -f /bin/sh && \
     rm /bin/sh && \
-    ls -s /bin/bash /bin/sh && \
+    ln -s /bin/bash /bin/sh && \
     ls -la /bin/sh
 
 RUN grep -q ${GROUPS[0]} /etc/group || groupadd -g ${GROUPS[0]} ${USER}
