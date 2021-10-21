@@ -42,11 +42,11 @@ fi
 PIP_MIRROR_CMD=""
 if [[ -n "${PIP_MIRROR}" ]]; then
     PIP_HOSTNAME=$(echo "${PIP_MIRROR}" | awk -F[/:] '{print $4}')
-    PIP_MIRROR_CMD="RUN mkdir -p \${HOME}/.pip && \
-        echo \"[global]\" > \${HOME}/.pip/pip.conf && \
-        echo \"index-url=${PIP_MIRROR}\" >> \${HOME}/.pip/pip.conf &&\
-        echo \"[install]\" >> \${HOME}/.pip/pip.conf &&\
-        echo \"trusted-host=${PIP_HOSTNAME}\" >> \${HOME}/.pip/pip.conf"
+    PIP_MIRROR_CMD="RUN mkdir -p /home/root/.pip && \
+        echo \"[global]\" > /home/root/.pip/pip.conf && \
+        echo \"index-url=${PIP_MIRROR}\" >> /home/root/.pip/pip.conf &&\
+        echo \"[install]\" >> /home/root/.pip/pip.conf &&\
+        echo \"trusted-host=${PIP_HOSTNAME}\" >> /home/root/.pip/pip.conf"
 fi
 
 ################################# docker img # #################################
@@ -108,8 +108,6 @@ RUN apt-get update -qqy \
   && mv /opt/firefox /opt/firefox-72.0 \
   && ln -fs /opt/firefox-72.0/firefox /usr/bin/firefox
 
-ENV HOME ${HOME}
-
 ${PIP_MIRROR_CMD}
 
 RUN pip3 install \
@@ -148,6 +146,7 @@ RUN grep -q ${GROUPS[0]} /etc/group || groupadd -g ${GROUPS[0]} ${USER}
 RUN grep -q ${UID} /etc/passwd || useradd -d ${HOME} -m -u ${UID} -g ${GROUPS[0]} \
                     ${USER}
 USER ${USER}
+ENV HOME ${HOME}
 RUN /bin/bash
 EOF
 )
