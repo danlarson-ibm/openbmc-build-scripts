@@ -98,7 +98,8 @@ RUN apt-get update && apt-get install -yy \
     python3-pip \
     ipmitool \
     xvfb \
-    rustc
+    rustc \
+    perl
 
 RUN apt-get update -qqy \
   && apt-get -qqy --no-install-recommends install firefox \
