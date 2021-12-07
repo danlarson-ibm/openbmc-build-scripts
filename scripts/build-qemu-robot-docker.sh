@@ -137,7 +137,8 @@ RUN pip3 install \
     urllib3 \
     click \
     xvfbwrapper \
-    artifactory
+    dohq-artifactory \
+    slack-sdk
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz \
         && tar xvzf geckodriver-*.tar.gz \
