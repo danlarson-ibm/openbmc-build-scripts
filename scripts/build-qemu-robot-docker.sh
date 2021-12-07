@@ -136,7 +136,8 @@ RUN pip3 install \
     selenium==3.141.0 \
     urllib3 \
     click \
-    xvfbwrapper
+    xvfbwrapper \
+    artifactory
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz \
         && tar xvzf geckodriver-*.tar.gz \
